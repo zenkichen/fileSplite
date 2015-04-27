@@ -1,0 +1,18 @@
+c:\documents and settings\zenkichen\my documents\visual studio 2010\Projects\fileSplite\fileSplite\bin\Debug\fileSplite.exe
+c:\documents and settings\zenkichen\my documents\visual studio 2010\Projects\fileSplite\fileSplite\bin\Debug\fileSplite.pdb
+c:\documents and settings\zenkichen\my documents\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\documents and settings\zenkichen\my documents\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\fileSplite.Form1.resources
+c:\documents and settings\zenkichen\my documents\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\fileSplite.Properties.Resources.resources
+c:\documents and settings\zenkichen\my documents\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\GenerateResource.read.1.tlog
+c:\documents and settings\zenkichen\my documents\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\GenerateResource.write.1.tlog
+c:\documents and settings\zenkichen\my documents\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\fileSplite.exe
+c:\documents and settings\zenkichen\my documents\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\fileSplite.pdb
+Z:\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\fileSplite.exe
+Z:\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\fileSplite.pdb
+Z:\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\bin\Debug\fileSplite.exe
+Z:\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\bin\Debug\fileSplite.pdb
+Z:\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\ResolveAssemblyReference.cache
+Z:\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\fileSplite.Form1.resources
+Z:\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\fileSplite.Properties.Resources.resources
+Z:\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\GenerateResource.read.1.tlog
+Z:\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\GenerateResource.write.1.tlog
