@@ -133,52 +133,78 @@ namespace fileSplite
 
         private void btnSender_Click(object sender, EventArgs e)
         {
-            FileStream aFile;
+            FileStream aFile,bFile,cFile;
+            BinaryWriter bw,cw;
             ushort packCnt = 0,lengthTmp;
             long i;
-            byte dataNull = 0x20;
-            byte[] inputBytes = new byte[65];
+            //byte dataNull = 0x20;
+            byte[] inputBytes = new byte[507];
+            byte[] cFileBytes = new byte[501];
+            byte[] crcArray = new byte[496];
             byte[] CRC = new byte[2];
+            byte CHK_OR;//异或校验
+            string outfile = file.Substring(0, file.LastIndexOf("."));
 
             aFile = new FileStream(file, FileMode.OpenOrCreate, FileAccess.Read);
             BinaryReader br = new BinaryReader(aFile);
+            cFile = new FileStream(outfile + "outall" + ".o", FileMode.OpenOrCreate, FileAccess.Write);
+            cw = new BinaryWriter(cFile);
+
             //// 首先判断，文件是否已经存在
             //if (File.Exists("test.o"))
             //{
             //    // 如果文件已经存在，那么删除掉.
             //    File.Delete("test.o");
             //}
-            //bFile = new FileStream("test.o", FileMode.OpenOrCreate, FileAccess.Write);
+            
             //BinaryWriter bw = new BinaryWriter(bFile);
             progressBar1.Value = 0;
             progressBar1.Visible = true;
-            NetworkStream ns = tcpClient.GetStream();
+            //NetworkStream ns = tcpClient.GetStream();
 
-            //如果读取的文件小于60字节
-            while ((aFile.Length - aFile.Position) > 60)
+            //如果读取的文件小于496字节
+            while ((aFile.Length - aFile.Position) > 496)//每包真实数据长度
             {
-                inputBytes[0] = Caa;
-                inputBytes[1] = C51;
-                inputBytes[2] = C01;
-                inputBytes[3] = (byte)(packCnt >> 8);
-                inputBytes[4] = (byte)(packCnt & 0x00FF);
+                inputBytes[0] = 0x1D;//头
+                inputBytes[1] = 0x97;//头
+                inputBytes[2] = 0x44;//字
+                inputBytes[3] = (byte)(501 >> 8);//长度512-6
+                inputBytes[4] = (byte)(501 & 0x00FF);
+                if (packCnt == 0) inputBytes[5] = 0xA1;//第一包
+                else inputBytes[5] = 0xA2;//中间包
+                inputBytes[6] = (byte)(packCnt >> 8);//包序号
+                inputBytes[7] = (byte)(packCnt & 0x00FF);//包序号
                 try
                 {
-                    for (i = 0; i < 60; i++)
+                    for (i = 0; i < 496; i++)
                     {
-                        inputBytes[5 + i] = br.ReadByte();
+                        inputBytes[8 + i] = br.ReadByte();//数据
                     }
                 }
                 catch (IOException ex)
                 {
                 }
-                CRC = CRC16Calc(inputBytes, inputBytes.Length);
-                //bw.Write(Cdd);//写至新文件
-                //bw.Write(C60);
-                //bw.Write(inputBytes, 0, 65);
-                //bw.Write(CRC[1]);
-                //bw.Write(CRC[0]);
+                Array.Copy(inputBytes,8, crcArray,0, 496);
+                CRC = CRC16Calc(crcArray, 496);//计算CRC
+                inputBytes[504] = CRC[1];
+                inputBytes[505] = CRC[0];
+                CHK_OR = (byte)0x00;
+                for (i = 2; i < 506; i++)
+                {
+                    CHK_OR ^= inputBytes[i];
+                }
+                inputBytes[506] = CHK_OR;//校验和
+
+                bFile = new FileStream(outfile + "out" + packCnt + ".up", FileMode.OpenOrCreate, FileAccess.Write);
+                bw = new BinaryWriter(bFile);
+                Array.Copy(inputBytes, 5, cFileBytes, 0, 501);
+                bw.Write(inputBytes, 0, 507);
+                cw.Write(cFileBytes, 0, 501);
+
+                bw.Close();
+                bFile.Close();
                 packCnt++;
+                /*
                 pkgBuff[0]=Cdd;//网络发出
                 pkgBuff[1]=C60;
                 for (i = 0; i < 65;i++ )
@@ -189,34 +215,46 @@ namespace fileSplite
                 pkgBuff[68] = CRC[0];
                 ns.Write(pkgBuff, 0, 69);
                 Thread.Sleep(1000);
+                 * */
                 progressBar1.Value = (int)(aFile.Position * 100 / aFile.Length);//进度条
             }
             lengthTmp = (ushort)(aFile.Length - aFile.Position);//获取剩余字节数
-            inputBytes[0] = Caa;
-            inputBytes[1] = C51;
-            inputBytes[2] = C01;
-            inputBytes[3] = 0xFF;
-            inputBytes[4] = 0xFF;
+
+            inputBytes[0] = 0x1D;//头
+            inputBytes[1] = 0x97;//头
+            inputBytes[2] = 0x44;//字
+            inputBytes[3] = (byte)((lengthTmp + 5) >> 8);//长度lengthTmp+5
+            inputBytes[4] = (byte)((lengthTmp + 5) & 0x00FF);
+            inputBytes[5] = 0xA3;//末尾包
+            inputBytes[6] = (byte)(packCnt >> 8);//包序号
+            inputBytes[7] = (byte)(packCnt & 0x00FF);//包序号
             try
             {
                 for (i = 0; i < lengthTmp; i++)
                 {
-                    inputBytes[5 + i] = br.ReadByte();
-                }
-                for (; i < 60; i++)
-                {
-                    inputBytes[5 + i] = dataNull;
+                    inputBytes[8 + i] = br.ReadByte();//数据
                 }
             }
             catch (IOException ex)
             {
             }
-            CRC = CRC16Calc(inputBytes, inputBytes.Length);
-            //bw.Write(Cdd);//写至新文件
-            //bw.Write(C60);
-            //bw.Write(inputBytes, 0, 65);
-            //bw.Write(CRC[1]);
-            //bw.Write(CRC[0]);
+            Array.Copy(inputBytes, 8, crcArray, 0, lengthTmp);
+            CRC = CRC16Calc(crcArray, lengthTmp);//计算CRC
+            inputBytes[lengthTmp+8] = CRC[1];
+            inputBytes[lengthTmp+9] = CRC[0];
+            CHK_OR = (byte)0x00;
+            for (i = 2; i < lengthTmp + 10; i++)
+            {
+                CHK_OR ^= inputBytes[i];
+            }
+            inputBytes[lengthTmp+10] = CHK_OR;//校验和
+
+            bFile = new FileStream(outfile + "out" + packCnt + ".up", FileMode.OpenOrCreate, FileAccess.Write);
+            bw = new BinaryWriter(bFile);
+            bw.Write(inputBytes, 0, (lengthTmp + 11));
+            Array.Copy(inputBytes, 5, cFileBytes, 0, (lengthTmp + 5));
+            cw.Write(cFileBytes, 0, (lengthTmp + 5));
+            /*
             pkgBuff[0] = Cdd;//网络发出
             pkgBuff[1] = C60;
             for (i = 0; i < 65; i++)
@@ -227,15 +265,32 @@ namespace fileSplite
             pkgBuff[68] = CRC[0];
             ns.Write(pkgBuff, 0, 69);
             Thread.Sleep(1000);
+             * */
             progressBar1.Value = (int)(aFile.Position * 100 / aFile.Length);//进度条
 
             MessageBox.Show("完成");
             progressBar1.Visible = false;
-            //bw.Close();
+            bw.Close();
             br.Close();
             aFile.Close();
-            //bFile.Close();
-            ns.Close();
+            bFile.Close();
+            aFile = new FileStream(file, FileMode.OpenOrCreate, FileAccess.Read);
+            br = new BinaryReader(aFile);
+            CHK_OR = 0x00;
+            for(i=0;i<aFile.Length;i++)
+            {
+                CHK_OR ^= br.ReadByte();
+            }
+            bFile = new FileStream(outfile + ".chk", FileMode.OpenOrCreate, FileAccess.Write);
+            bw = new BinaryWriter(bFile);
+            bw.Write(CHK_OR);
+            bw.Close();
+            br.Close();
+            aFile.Close();
+            bFile.Close();
+            cw.Close();
+            cFile.Close();
+            //ns.Close();
         }
 
         private void btnConnect_Click(object sender, EventArgs e)

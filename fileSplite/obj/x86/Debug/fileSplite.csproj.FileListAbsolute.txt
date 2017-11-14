@@ -16,3 +16,22 @@ Z:\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\De
 Z:\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\fileSplite.Properties.Resources.resources
 Z:\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\GenerateResource.read.1.tlog
 Z:\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\GenerateResource.write.1.tlog
+Z:\Documents\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\fileSplite.exe
+Z:\Documents\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\fileSplite.pdb
+Z:\Documents\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\bin\Debug\fileSplite.exe
+Z:\Documents\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\bin\Debug\fileSplite.pdb
+Z:\Documents\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\ResolveAssemblyReference.cache
+Z:\Documents\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\fileSplite.Form1.resources
+Z:\Documents\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\fileSplite.Properties.Resources.resources
+Z:\Documents\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\GenerateResource.read.1.tlog
+Z:\Documents\My Document\Prog\visual studio 2010\Projects\fileSplite\fileSplite\obj\x86\Debug\GenerateResource.write.1.tlog
+Z:\Documents\My Document\Prog\visual studio\Projects\fileSplitePPP\fileSplite\obj\x86\Debug\fileSplite.exe
+Z:\Documents\My Document\Prog\visual studio\Projects\fileSplitePPP\fileSplite\obj\x86\Debug\fileSplite.pdb
+Z:\Documents\My Document\Prog\visual studio\Projects\fileSplitePPP\fileSplite\bin\Debug\fileSplite.exe
+Z:\Documents\My Document\Prog\visual studio\Projects\fileSplitePPP\fileSplite\bin\Debug\fileSplite.pdb
+Z:\Documents\My Document\Prog\visual studio\Projects\fileSplitePPP\fileSplite\obj\x86\Debug\fileSplite.csprojResolveAssemblyReference.cache
+Z:\Documents\My Document\Prog\visual studio\Projects\fileSplitePPP\fileSplite\obj\x86\Debug\fileSplite.Form1.resources
+Z:\Documents\My Document\Prog\visual studio\Projects\fileSplitePPP\fileSplite\obj\x86\Debug\fileSplite.Properties.Resources.resources
+Z:\Documents\My Document\Prog\visual studio\Projects\fileSplitePPP\fileSplite\obj\x86\Debug\fileSplite.csproj.GenerateResource.Cache
+Z:\Documents\My Document\Prog\visual studio\Projects\导航增强\fileSplitePPP\fileSplite\obj\x86\Debug\fileSplite.exe
+Z:\Documents\My Document\Prog\visual studio\Projects\导航增强\fileSplitePPP\fileSplite\obj\x86\Debug\fileSplite.pdb

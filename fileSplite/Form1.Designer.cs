@@ -88,18 +88,16 @@
             // 
             // btnSender
             // 
-            this.btnSender.Enabled = false;
             this.btnSender.Location = new System.Drawing.Point(208, 65);
             this.btnSender.Name = "btnSender";
             this.btnSender.Size = new System.Drawing.Size(75, 23);
             this.btnSender.TabIndex = 3;
-            this.btnSender.Text = "拆分发送";
+            this.btnSender.Text = "拆分文件";
             this.btnSender.UseVisualStyleBackColor = true;
             this.btnSender.Click += new System.EventHandler(this.btnSender_Click);
             // 
             // btnSelFile
             // 
-            this.btnSelFile.Enabled = false;
             this.btnSelFile.Location = new System.Drawing.Point(208, 34);
             this.btnSelFile.Name = "btnSelFile";
             this.btnSelFile.Size = new System.Drawing.Size(75, 23);
@@ -211,7 +209,7 @@
             this.txtIPaddr.Name = "txtIPaddr";
             this.txtIPaddr.Size = new System.Drawing.Size(107, 21);
             this.txtIPaddr.TabIndex = 3;
-            this.txtIPaddr.Text = "192.168.0.121";
+            this.txtIPaddr.Text = "192.1.1.2";
             // 
             // label5
             // 
@@ -224,9 +222,9 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.Location = new System.Drawing.Point(314, 31);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(434, 400);
@@ -243,8 +241,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "文件拆分发送软件（PPP）";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
